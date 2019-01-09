@@ -1,5 +1,16 @@
+const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const key = require('../config/keys');
 
+// Setup token
+const tokenForUser = user => {
+  const timestamp = new Date().getTime();
+  const payload = { sub: user.id, iat: timestamp };
+
+  return jwt.sign(payload, key.tokenSecret, { expiresIn: 72000 });
+};
+
+// Register route handling
 exports.register = (req, res, next) => {
   let errors = [];
   let validData = undefined;
@@ -11,7 +22,7 @@ exports.register = (req, res, next) => {
     errors.push({ msg: 'Please fill in all required fields' });
   }
 
-  // Check valid email
+  // Check if email is valid
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   if (!re.test(email)) {
@@ -62,7 +73,7 @@ exports.register = (req, res, next) => {
           .save()
           .then(user => {
             // Respond that the user was created
-            res.json({ registrationSuccess: true });
+            res.json({ token: tokenForUser(user) });
           })
           .catch(err => console.log(err));
       })
