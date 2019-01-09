@@ -3,6 +3,7 @@ const passport = require('passport');
 
 const router = express.Router();
 
+// Token authentication strategy
 const requireAuth = passport.authenticate('jwt', { session: false });
 
 // Welcome

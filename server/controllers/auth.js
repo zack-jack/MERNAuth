@@ -81,3 +81,10 @@ exports.register = (req, res, next) => {
       .catch(err => console.log(err));
   }
 };
+
+// Login route handling
+exports.login = (req, res, next) => {
+  // User already authenticated by requireLogin middleware
+  // Give user an auth token
+  res.send({ token: tokenForUser(req.user) });
+};
