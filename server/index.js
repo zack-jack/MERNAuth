@@ -24,6 +24,7 @@ app.use(morgan('combined'));
 
 // Routes
 app.use('/', require('./routes/index'));
+app.use('/user', require('./routes/user'));
 
 // Server setup
 const port = process.env.PORT || 5000;
