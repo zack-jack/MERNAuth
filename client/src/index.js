@@ -10,6 +10,7 @@ import rootReducer from './reducers';
 import App from './components/App';
 import Welcome from './components/Welcome';
 import Register from './components/auth/Register';
+import Dashboard from './components/Dashboard';
 
 // Setup redux store
 const INITIAL_STATE = {};
@@ -25,6 +26,7 @@ ReactDOM.render(
       <App>
         <Route path="/" exact component={Welcome} />
         <Route path="/user/register" render={() => <Register />} />
+        <Route path="/dashboard" render={() => <Dashboard />} />
       </App>
     </Router>
   </Provider>,
