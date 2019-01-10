@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
+import { withRouter } from 'react-router-dom';
 
 import * as actions from '../../actions';
 
 class Register extends Component {
   onSubmit = formProps => {
-    this.props.register(formProps);
+    this.props.register(formProps, () => {
+      this.props.history.push('/dashboard');
+    });
   };
 
   renderErrors = errors => {
@@ -70,5 +73,6 @@ export default compose(
     mapStateToProps,
     actions
   ),
-  reduxForm({ form: 'register' })
+  reduxForm({ form: 'register' }),
+  withRouter
 )(Register);
