@@ -10,6 +10,12 @@ class Register extends Component {
     this.props.register(formProps);
   };
 
+  renderErrors = errors => {
+    return errors.map(error => {
+      return <p>{error.msg}</p>;
+    });
+  };
+
   render() {
     const { handleSubmit } = this.props;
 
@@ -45,15 +51,23 @@ class Register extends Component {
           />
         </fieldset>
 
+        <div>{this.renderErrors(this.props.errorMessages)}</div>
+
         <button>Register</button>
       </form>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    errorMessages: state.auth.errorMessages
+  };
+};
+
 export default compose(
   connect(
-    null,
+    mapStateToProps,
     actions
   ),
   reduxForm({ form: 'register' })

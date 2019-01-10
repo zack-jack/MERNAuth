@@ -26,7 +26,7 @@ exports.register = (req, res, next) => {
   // Check if email is valid
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  if (!re.test(email)) {
+  if (email && !re.test(email)) {
     errors.push({ msg: 'Please provide a valid email address' });
   }
 
