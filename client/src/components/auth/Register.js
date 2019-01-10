@@ -14,9 +14,11 @@ class Register extends Component {
   };
 
   renderErrors = errors => {
-    return errors.map(error => {
-      return <p>{error.msg}</p>;
-    });
+    if (errors) {
+      return errors.map((error, i) => {
+        return <p key={i}>{error.msg}</p>;
+      });
+    }
   };
 
   render() {

@@ -13,7 +13,12 @@ import Register from './components/auth/Register';
 import Dashboard from './components/Dashboard';
 
 // Setup redux store
-const INITIAL_STATE = {};
+// Check localStorage for auth token
+const INITIAL_STATE = {
+  auth: { authenticated: localStorage.getItem('token') }
+};
+
+// Redux store
 const store = createStore(
   rootReducer,
   INITIAL_STATE,
