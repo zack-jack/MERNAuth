@@ -20,3 +20,12 @@ export const register = (formProps, callback) => async dispatch => {
     dispatch({ type: AUTH_ERROR, payload: errors });
   }
 };
+
+export const logout = () => {
+  localStorage.removeItem('token');
+
+  return {
+    type: AUTH_USER,
+    payload: ''
+  };
+};
