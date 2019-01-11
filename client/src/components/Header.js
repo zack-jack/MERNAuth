@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import '../styles/header.css';
+
 class Header extends Component {
   renderNavLinks = () => {
     if (this.props.authenticated) {
@@ -23,7 +25,7 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
+      <div className="header">
         <Link to="/">Home</Link>
         {this.renderNavLinks()}
       </div>
