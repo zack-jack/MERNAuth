@@ -6,14 +6,15 @@ import { withRouter } from 'react-router-dom';
 
 import * as actions from '../../actions';
 
-class Register extends Component {
+class Login extends Component {
   onSubmit = formProps => {
-    this.props.register(formProps, () => {
+    this.props.login(formProps, () => {
       this.props.history.push('/dashboard');
     });
   };
 
   renderErrors = errors => {
+    console.log('login errors: ', errors);
     if (errors) {
       return errors.map((error, i) => {
         return <p key={i}>{error.message}</p>;
@@ -46,19 +47,9 @@ class Register extends Component {
           />
         </fieldset>
 
-        <fieldset>
-          <label>Confirm Password</label>
-          <Field
-            name="passwordConfirm"
-            type="password"
-            component="input"
-            autoComplete="none"
-          />
-        </fieldset>
-
         <div>{this.renderErrors(this.props.errorMessages)}</div>
 
-        <button>Register</button>
+        <button>Login</button>
       </form>
     );
   }
@@ -75,6 +66,6 @@ export default compose(
     mapStateToProps,
     actions
   ),
-  reduxForm({ form: 'register' }),
+  reduxForm({ form: 'login' }),
   withRouter
-)(Register);
+)(Login);

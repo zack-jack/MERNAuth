@@ -13,7 +13,8 @@ class Logout extends Component {
   render() {
     return (
       <div>
-        <h2>Successfully logged out. Hope to see ya again soon!</h2>
+        <h2>Successfully logged out.</h2>
+        <p>Hope to see ya again soon!</p>
       </div>
     );
   }
